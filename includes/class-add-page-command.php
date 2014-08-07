@@ -1,6 +1,7 @@
 <?php
 require_once( ABSPATH . '/wp-load.php');
 class AddPageCommand extends DSCommand {
+
     public function execute($jsonCommand) {
         $data = $jsonCommand["data"];
         $slug = $data["slug"];
@@ -17,15 +18,12 @@ class AddPageCommand extends DSCommand {
         if(!empty($pageTemplate)) {
             $post["page_template"] = $pageTemplate;
         }
-
-        $wp_error = array();
-
-        wp_insert_post( $post, $wp_error);
-
-        var_dump($wp_error); die;
-
-
-
-
+        //TODO handle other fields: category (need to force user input category slug)
+        $result = wp_insert_post( $post, true);
+        if (is_wp_error( $result ) ) {
+            $this->errors[] = $result->get_error_message();
+            return false;
+        }
+        return true;
     }
 }
