@@ -53,20 +53,12 @@ class WPDataScript {
     protected function processSubmitData() {
         $dataScript = $_POST['datascript'];
         $commandData = json_decode($dataScript, true);
-        //var_dump($commandData); die;
 
         if($commandData == null) {
             $this->errors[] = "Invalid JSON data";
-
             return;
         }
-
-        if(!isset($commandData["commands"])) {
-            $this->errors[] = "JSON data must include commands entry";
-            return;
-        }
-        $commandArray = $commandData["commands"];
-        foreach($commandArray as $command) {
+        foreach($commandData as $command) {
             $cmdName = $command['cmd'];
             $actionCommand = DSCommandFactory::getCommand($cmdName);
             if(!empty($actionCommand)) {

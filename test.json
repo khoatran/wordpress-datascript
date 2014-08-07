@@ -1,0 +1,28 @@
+[
+    {
+        "cmd": "add-page",
+        "data": {
+            "title": "Hello World! This is my test page",
+            "slug": "test-page"
+        }
+    },
+    {
+        "cmd": "add-categories",
+        "data": [
+            {
+                "title": "Animals",
+                "slug": "animals",
+                "children": [
+                    {
+                        "title": "Dogs",
+                        "slug": "dogs"
+                    },
+                    {
+                        "title": "Cats",
+                        "slug": "cats"
+                    }
+                ]
+            }
+        ]
+    }
+]

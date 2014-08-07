@@ -1,5 +1,16 @@
 <?php
-require_once( ABSPATH . '/wp-load.php');
+
+/**
+ * Class AddPageCommand
+ * JSON Example: {
+ *           "cmd": "add-page",
+ *           "data": {
+ *           "title": "test page",
+ *           "slug": "test page",
+ *           "content": "This is a test page"
+ *          }
+},
+ */
 class AddPageCommand extends DSCommand {
 
     public function execute($jsonCommand) {
