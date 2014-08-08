@@ -7,6 +7,14 @@
         }
     },
     {
+        "cmd": "update-page",
+        "data": {
+            "title": "Hello World!",
+            "slug": "test-page",
+            "content": "Bonjour!"
+        }
+    },
+    {
         "cmd": "add-category",
         "data": {
             "title": "Animals",
