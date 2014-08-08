@@ -101,7 +101,7 @@ class WPDataScript {
 
                     ?>
 
-                    <textarea id="datascript" name="datascript" rows="10" cols="70"><?php echo $this->dataScript; ?></textarea>
+                    <textarea id="datascript" name="datascript" rows="25" cols="80"><?php echo $this->dataScript; ?></textarea>
                     <?php
                     if(!empty($this->errors)) {
                         ?>
@@ -110,11 +110,18 @@ class WPDataScript {
                                     <?php echo $this->errors[0]; ?>
                                 </span>
                         </p>
+
                     <?php
-                    }
+                    } else { ?>
+                        <p>
+                                <span>
+                                    Commands run successfully
+                                </span>
+                        </p>
+                    <?php }
                 } else {
                     ?>
-                    <textarea id="datascript" name="datascript" rows="10" cols="70"></textarea>
+                    <textarea id="datascript" name="datascript" rows="25" cols="80"></textarea>
                     <?php
                 }
                 ?>
