@@ -7,22 +7,24 @@
         }
     },
     {
-        "cmd": "add-categories",
-        "data": [
-            {
-                "title": "Animals",
-                "slug": "animals",
-                "children": [
-                    {
-                        "title": "Dogs",
-                        "slug": "dogs"
-                    },
-                    {
-                        "title": "Cats",
-                        "slug": "cats"
-                    }
-                ]
-            }
-        ]
+        "cmd": "add-category",
+        "data": {
+            "title": "Animals",
+            "slug": "animals",
+            "description": "Animals",
+            "children": [
+                {
+                    "title": "Cats",
+                    "slug": "cats",
+                    "description": "Cats"
+                },
+                {
+                    "title": "Dogs",
+                    "slug": "dogs",
+                    "description": "Dogs"
+                }
+            ]
+
+        }
     }
 ]

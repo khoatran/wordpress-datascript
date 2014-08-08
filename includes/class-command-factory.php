@@ -5,6 +5,7 @@ class DSCommandFactory {
         if(empty($commands)) {
             $commands = array();
             $commands["add-page"] = new AddPageCommand();
+            $commands["add-category"] = new AddCategoryCommand();
         }
         if(isset($commands[$cmdName])){
             return $commands[$cmdName];

@@ -11,7 +11,10 @@ License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2
 */
 
 if(!function_exists('wp_get_current_user')) {
-    include(ABSPATH . "wp-includes/pluggable.php");
+    require_once(ABSPATH . "wp-includes/pluggable.php");
+}
+if(!function_exists('wp_insert_category')) {
+    require_once(ABSPATH . "wp-admin/includes/taxonomy.php");
 }
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,10 +31,12 @@ if ( ! class_exists( 'WPDataScript' ) ) :
 class WPDataScript {
     private $errors = array();
     private $success = false;
+    private  $dataScript;
     private function includes() {
         include_once( 'includes/class-ds-command.php' );
         include_once( 'includes/class-command-factory.php' );
         include_once( 'includes/class-add-page-command.php' );
+        include_once( 'includes/class-add-category-command.php' );
     }
 
     /**
@@ -51,9 +56,9 @@ class WPDataScript {
 
 
     protected function processSubmitData() {
-        $dataScript = $_POST['datascript'];
-        $commandData = json_decode($dataScript, true);
 
+        $this->dataScript = $_POST['datascript'];
+        $commandData = json_decode($this->dataScript, true);
         if($commandData == null) {
             $this->errors[] = "Invalid JSON data";
             return;
@@ -62,7 +67,11 @@ class WPDataScript {
             $cmdName = $command['cmd'];
             $actionCommand = DSCommandFactory::getCommand($cmdName);
             if(!empty($actionCommand)) {
-                $actionCommand->execute($command);
+                $result = $actionCommand->execute($command);
+                $commandErrors = $actionCommand->getErrors();
+                if(!$result && !empty($commandErrors)) {
+                    $this->errors[] = $commandErrors[0];
+                }
             } else {
                 $this->errors[] = "Command [".$cmdName."] is not supported";
             }
@@ -88,9 +97,11 @@ class WPDataScript {
         <div id="submit-script-form">
             <form action="" method="post" id="datascript-form">
                 <?php
-                if(isset($_POST['wp-datascript-action'])) { ?>
+                if(isset($_POST['wp-datascript-action'])) {
 
-                    <textarea id="datascript" name="datascript" rows="10" cols="70"><?php echo $_POST['datascript']; ?></textarea>
+                    ?>
+
+                    <textarea id="datascript" name="datascript" rows="10" cols="70"><?php echo $this->dataScript; ?></textarea>
                     <?php
                     if(!empty($this->errors)) {
                         ?>
