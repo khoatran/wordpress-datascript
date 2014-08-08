@@ -78,4 +78,19 @@ Syntax:
            ]
        }
     }
+### Update category
+
+Syntax:
+
+    
+    {
+       "cmd": "update-category",
+       "data": {
+           "slug": "slug-of-category",
+           "new-slug": "new-slug-of-category, if you want to update slug",
+           "title": "title-of-category",
+           "description": "description",
+           "parent-slug" : "slug of parent category - if want to update"
+       }
+    }    
         

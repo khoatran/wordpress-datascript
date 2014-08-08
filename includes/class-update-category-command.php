@@ -43,8 +43,8 @@ class UpdateCategoryCommand extends DSCommand {
             $data["name"] = $jsonNode["title"];
         }
 
-        if(isset($jsonNode["new_slug"]) && !empty($jsonNode["new_slug"])) {
-            $data["slug"] = $jsonNode["new_slug"];
+        if(isset($jsonNode["new-slug"]) && !empty($jsonNode["new-slug"])) {
+            $data["slug"] = $jsonNode["new-slug"];
         }
 
         if(isset($jsonNode["description"]) && !empty($jsonNode["description"])) {
