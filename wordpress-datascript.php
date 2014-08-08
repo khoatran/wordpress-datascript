@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'WPDataScript' ) ) :
-
+$wp_rewrite = new WP_Rewrite();
 
 /**
  * WordPress DataScript class to handle the data script loading and processing
@@ -36,6 +36,7 @@ class WPDataScript {
         include_once( 'includes/class-ds-command.php' );
         include_once( 'includes/class-command-factory.php' );
         include_once( 'includes/class-add-page-command.php' );
+        include_once( 'includes/class-update-page-command.php');
         include_once( 'includes/class-add-category-command.php' );
     }
 
@@ -54,11 +55,8 @@ class WPDataScript {
 
     }
 
-
-    protected function processSubmitData() {
-
-        $this->dataScript = $_POST['datascript'];
-        $commandData = json_decode($this->dataScript, true);
+    public function processDataScript($dataScript) {
+        $commandData = json_decode($dataScript, true);
         if($commandData == null) {
             $this->errors[] = "Invalid JSON data";
             return;
@@ -80,6 +78,13 @@ class WPDataScript {
         $this->success = empty($this->errors);
 
     }
+
+    protected function processSubmitData() {
+        $this->dataScript = $_POST['datascript'];
+        $this->processDataScript($this->dataScript);
+    }
+
+
     public function addToolsMenu(){
         add_menu_page( "Wordpress Datascript",
                         "Wordpress DataScript",
