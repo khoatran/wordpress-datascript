@@ -25,57 +25,57 @@ Below is the list of commands that I am supporting currently.
 
 Syntax:
 
-    [
-        {
-           "cmd": "add-page",
-           "data": {
-               "slug": "slug-of-page",
-               "title": "title-of-page",
-               "content": "page-content",
-               "status" : "status-of-WP-post ['draft'|'publish'|'pending'| 'future' | 'private' | custom registered status ]",
-               "template": "page-template",
-               "parent_slug": "slug-of-parent-page if-any"
-           }
-        }
-    ]
+    
+    {
+       "cmd": "add-page",
+       "data": {
+           "slug": "slug-of-page",
+           "title": "title-of-page",
+           "content": "page-content",
+           "status" : "status-of-WP-post ['draft'|'publish'|'pending'| 'future' | 'private' | custom registered status ]",
+           "template": "page-template",
+           "parent_slug": "slug-of-parent-page if-any"
+       }
+    }
+    
     
 ### Update page command
 
 Syntax:
 
-    [
-        {
-           "cmd": "update-page",
-           "data": {
-               "slug": "slug-of-page",
-               "title": "title-of-page",
-               "content": "page-content",
-               "status" : "status-of-WP-post ['draft'|'publish'|'pending'| 'future' | 'private' | custom registered status ]",
-               "template": "page-template",
-               "parent_slug": "slug-of-parent-page if-any"
-           }
-        }
-    ]
+    
+    {
+       "cmd": "update-page",
+       "data": {
+           "slug": "slug-of-page",
+           "title": "title-of-page",
+           "content": "page-content",
+           "status" : "status-of-WP-post ['draft'|'publish'|'pending'| 'future' | 'private' | custom registered status ]",
+           "template": "page-template",
+           "parent_slug": "slug-of-parent-page if-any"
+       }
+    }
+    
 ### Add category
 
 Syntax:
 
-    [
-        {
-           "cmd": "add-category",
-           "data": {
-               "slug": "slug-of-category",
-               "title": "title-of-category",
-               "description": "description",
-               "parent-slug" : "slug of parent category - only apply at this level",
-               "children": [
-                  {
-                  "slug": "slug-of-child-category",
-                  "title": "title of child category",
-                  "description": "description",
-                  },
-                  ...
-               ]
-           }
-        }
-    ]    
+    
+    {
+       "cmd": "add-category",
+       "data": {
+           "slug": "slug-of-category",
+           "title": "title-of-category",
+           "description": "description",
+           "parent-slug" : "slug of parent category - only apply at this level",
+           "children": [
+              {
+              "slug": "slug-of-child-category",
+              "title": "title of child category",
+              "description": "description",
+              },
+              ...
+           ]
+       }
+    }
+        
