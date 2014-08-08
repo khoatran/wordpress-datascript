@@ -2,14 +2,24 @@
 
 /**
  * Class AddCategoriesCommand
- * JSON Example:
+ * Syntax:
  *     {
- *        "cmd": "add-categories",
+ *        "cmd": "add-category",
  *        "data": [
  *           {
- *              "title": "Category 1",
- *              "slug": "cat-1",
- *              "children": []
+ *              "title": "Category title",
+ *              "slug": "cat-slug",
+ *              "description": "description",
+ *              "parent-slug": "slug of parent category"
+ *              "children": [
+ *                  {
+ *                    "title": "Category title",
+ *                    "slug": "cat-slug",
+ *                    "description": "description"
+ *                  },
+ *                  ...
+ *
+ *              ]
  *           }
  *         ]
  *     }
@@ -19,9 +29,7 @@ class AddCategoryCommand extends DSCommand {
 
     public function execute($jsonCommand) {
         $data = $jsonCommand["data"];
-
-        $this->createCategory($data, 0);
-
+        return $this->createCategory($data, 0);
     }
 
     private function createCategory($jsonNode, $parentID = 0) {
@@ -46,7 +54,7 @@ class AddCategoryCommand extends DSCommand {
         $result = wp_insert_category($category, true);
         if (is_wp_error( $result ) ) {
             $this->errors[] = $result->get_error_message();
-            return 0;
+            return false;
         }
 
         if(isset($jsonNode["children"]) &&

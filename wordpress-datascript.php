@@ -38,6 +38,7 @@ class WPDataScript {
         include_once( 'includes/class-add-page-command.php' );
         include_once( 'includes/class-update-page-command.php');
         include_once( 'includes/class-add-category-command.php' );
+        include_once( 'includes/class-update-category-command.php');
     }
 
     /**
